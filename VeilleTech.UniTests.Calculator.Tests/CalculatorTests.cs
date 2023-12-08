@@ -2,15 +2,17 @@
 {
     public class CalculatorTests
     {
+        private readonly Calculator _calculator = new();
+
         [Fact]
         public void When_Add_Return_ValidResult()
         {
             // Arrange
-            var calculator = new Calculator();
-            int x = 3; int y = 5;
+            int x = 3; 
+            int y = 5;
 
             // Act
-            var result = calculator.Add(x, y);
+            var result = _calculator.Add(x, y);
 
             // Assert
             Assert.Equal(8, result);
@@ -23,10 +25,9 @@
         public void When_Substract_Return_ValidResult(int x, int y, int expectedResult)
         {
             // Arrange
-            var calculator = new Calculator();
 
             // Act
-            var result = calculator.Substract(x, y); 
+            var result = _calculator.Substract(x, y); 
 
             // Assert
             Assert.Equal(expectedResult, result);
@@ -36,11 +37,11 @@
         public void When_Divide_Return_ValidObjectResult()
         {
             // Arrange
-            var calculator = new Calculator();
-            var a = 3; var b = 6;
+            var a = 3; 
+            var b = 6;
 
             // Act
-            var result = calculator.Divide(a, b);
+            var result = _calculator.Divide(a, b);
 
             // Assert
             Assert.True(result.IsSuccess);
@@ -52,16 +53,41 @@
         public void When_Divide_Return_DivideByZero()
         {
             // Arrange
-            var calculator = new Calculator();
-            var a = 3; var b = 0;
+            var a = 3; 
+            var b = 0;
 
             // Act
-            var result = calculator.Divide(a, b);
+            var result = _calculator.Divide(a, b);
 
             // Assert
             Assert.False(result.IsSuccess);
             Assert.Equal("DivideByZero", result.Error);
             Assert.Equal(0, result.Result);
+        }
+
+        [Fact]
+        public void When_DivideByZero_ThrowException()
+        {
+            // Arrange
+            var a = 5; 
+            var b = 0;
+
+            // Act
+            Assert.Throws<DivideByZeroException>(() => _calculator.DivideWithException(a, b));   
+        }
+
+        [Fact]
+        public void When_DivideByZero_Should_Return_ValidResult()
+        {
+            // Arrange
+            var a = 6; 
+            var b = 3;
+
+            // Act
+            var result = _calculator.DivideWithException(a, b);
+
+            // Assert
+            Assert.Equal(2, result);
         }
     }
 }

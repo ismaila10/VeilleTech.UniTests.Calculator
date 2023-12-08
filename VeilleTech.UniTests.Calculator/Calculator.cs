@@ -34,6 +34,15 @@
             };
         }
 
-        
+        public decimal DivideWithException(decimal dividend, decimal divisor)
+        {
+            if(divisor == 0)
+            {
+                throw new DivideByZeroException();
+            }
+
+            var result = dividend / divisor;
+            return result;
+        }
     }
 }
