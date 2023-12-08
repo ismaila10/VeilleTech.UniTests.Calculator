@@ -15,5 +15,25 @@
 
             return result;
         }
+
+        public CalculatorResponse Divide(decimal dividend, decimal divisor)
+        {
+            if (divisor == 0)
+            {
+                return new CalculatorResponse
+                {
+                    IsSuccess = false,
+                    Error = "DivideByZero"
+                };
+            }
+
+            var result = dividend / divisor;
+            return new CalculatorResponse {
+                IsSuccess = true,
+                Result = result
+            };
+        }
+
+        
     }
 }
