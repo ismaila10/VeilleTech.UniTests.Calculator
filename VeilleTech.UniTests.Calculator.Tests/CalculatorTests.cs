@@ -47,7 +47,7 @@
 
             // Assert
             Assert.True(result.IsSuccess);
-            Assert.Equal("0,5", result.Result.ToString());
+            Assert.Equal((decimal)0.5, result.Result);
             Assert.Null(result.Error);
         }
 
