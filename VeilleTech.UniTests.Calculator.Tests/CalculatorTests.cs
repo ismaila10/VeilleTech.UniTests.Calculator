@@ -4,7 +4,7 @@
     {
         private readonly Calculator _calculator = new();
 
-        // STEP 1
+        // STEP 1 NAMING
 
         [Fact]
         public void When_Add_Return_ValidResult()
@@ -92,7 +92,7 @@
             Assert.Equal(2, result);
         }
 
-        // STEP 2 
+        // STEP 2 NAMING
         //UnitOfWork_StateUnderTest_ExpectedBehavior
         //MethodName_Params_Result
 
