@@ -4,16 +4,12 @@
     {
         public int Add(int x, int y)
         {
-            var result = x + y;
-
-            return result;
+            return x + y;
         }
 
         public int Substract(int x, int y)
         {
-            var result = x - y;
-
-            return result;
+            return x - y;
         }
 
         public CalculatorResponse Divide(decimal dividend, decimal divisor)
@@ -27,22 +23,22 @@
                 };
             }
 
-            var result = dividend / divisor;
             return new CalculatorResponse {
                 IsSuccess = true,
-                Result = result
+                Result = dividend / divisor
             };
         }
 
         public decimal DivideWithException(decimal dividend, decimal divisor)
         {
-            if(divisor == 0)
-            {
-                throw new DivideByZeroException();
-            }
+            return (divisor != 0 ? dividend / divisor :
+                throw new DivideByZeroException());
+        }
 
-            var result = dividend / divisor;
-            return result;
+        public double Average(double a, double b)
+        {
+            return (a >= 0 && b >= 0 ? (a + b) / 2 :
+                throw new ArgumentException("All argument values must be greater than or equal to 0"));           
         }
     }
 }

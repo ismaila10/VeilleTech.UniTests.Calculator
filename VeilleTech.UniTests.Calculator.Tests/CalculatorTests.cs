@@ -4,6 +4,8 @@
     {
         private readonly Calculator _calculator = new();
 
+        // STEP 1
+
         [Fact]
         public void When_Add_Return_ValidResult()
         {
@@ -72,7 +74,7 @@
             var a = 5; 
             var b = 0;
 
-            // Act
+            // Act & Assert
             Assert.Throws<DivideByZeroException>(() => _calculator.DivideWithException(a, b));   
         }
 
@@ -88,6 +90,33 @@
 
             // Assert
             Assert.Equal(2, result);
+        }
+
+        // STEP 2 
+        //UnitOfWork_StateUnderTest_ExpectedBehavior
+        //MethodName_Params_Result
+
+        [Theory]
+        [InlineData(0, 5, 2.5)]
+        [InlineData(10, 20, 15)]
+        [InlineData(0, double.MaxValue, 8.988465674311579E+307)]
+        public void Average_PositiveNumbersAsParam_ReturnAverage(double a, double b, double expectedresult) {
+            // Act
+            var result = _calculator.Average(a, b);
+
+            // Assert
+            Assert.Equal(expectedresult, result);
+        }
+
+        [Theory]
+        [InlineData(-15, 20)]
+        [InlineData(-30, -45)]
+        [InlineData(55, -14)]
+        [InlineData(-1, double.MinValue)]
+        public void Average_AtLeastOneNegativeNumbersAsParam_ThrowException(double a, double b)
+        {
+            // AAA
+            Assert.Throws<ArgumentException>(() => _calculator.Average(a, b));
         }
     }
 }
