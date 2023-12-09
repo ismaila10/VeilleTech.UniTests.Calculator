@@ -1,4 +1,6 @@
-﻿namespace VeilleTech.UniTests.Calculator.Tests
+﻿using System;
+
+namespace VeilleTech.UniTests.Calculator.Tests
 {
     public class CalculatorTests
     {
@@ -97,15 +99,13 @@
         //MethodName_Params_Result
 
         [Theory]
-        [InlineData(0, 5, 2.5)]
-        [InlineData(10, 20, 15)]
-        [InlineData(0, double.MaxValue, 8.988465674311579E+307)]
-        public void Average_PositiveNumbersAsParam_ReturnAverage(double a, double b, double expectedresult) {
+        [ClassData(typeof(TestData))]
+        public void Average_PositiveNumbersAsParam_ReturnAverage(double a, double b, double expectedResult) {
             // Act
             var result = _calculator.Average(a, b);
 
             // Assert
-            Assert.Equal(expectedresult, result);
+            Assert.Equal(expectedResult, result);
         }
 
         [Theory]
@@ -117,6 +117,54 @@
         {
             // AAA
             Assert.Throws<ArgumentException>(() => _calculator.Average(a, b));
+        }
+
+
+        // Multiplication Method with TDD(Test Driven Development)
+        [Theory]
+        [InlineData(1, 2, 2)]
+        [InlineData(3, 4, 12)]
+        public void Multiplication_NumbersAsParam_returnMultiplication(double a, double b, double expectedResult)
+        {
+            // Arrange & Act
+            var result = _calculator.Multiplication(a, b);
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetStudents))]
+        public void StudentAverageMark_Students_ReturnAverage(Student student, double expectedResult)
+        {
+            // Arrange & Act
+            var result = _calculator.MarksAverage(student);
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        public static IEnumerable<object[]> GetStudents()
+        {
+            yield return new object[]
+            {
+                new Student
+                {
+                    Name = "Toto1",
+                    Marks = new List<int> { 10, 20, 30 }
+                },
+                20
+            };
+
+            yield return new object[]
+            {
+                new Student
+                {
+                    Name = "Toto2",
+                    Marks = new List<int> { 10, 24 }
+                },
+                17
+            };
         }
     }
 }

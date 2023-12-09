@@ -1,4 +1,6 @@
-﻿namespace VeilleTech.UniTests.Calculator
+﻿
+
+namespace VeilleTech.UniTests.Calculator
 {
     public class Calculator
     {
@@ -39,6 +41,20 @@
         {
             return (a >= 0 && b >= 0 ? (a + b) / 2 :
                 throw new ArgumentException("All argument values must be greater than or equal to 0"));           
+        }
+
+        public double Multiplication(double a, double b)
+        {
+            return a * b;
+        }
+
+        public double MarksAverage(Student student)
+        {
+            if(student.Marks != null && student.Marks.Any())
+            {
+                return student.Marks.Average();
+            }
+            throw new ArgumentException("Marks cannot be null or empty");
         }
     }
 }
