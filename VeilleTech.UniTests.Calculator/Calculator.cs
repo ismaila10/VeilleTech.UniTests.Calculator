@@ -1,5 +1,7 @@
 ﻿
 
+using VeilleTech.UniTests.Calculator.Models;
+
 namespace VeilleTech.UniTests.Calculator
 {
     public class Calculator

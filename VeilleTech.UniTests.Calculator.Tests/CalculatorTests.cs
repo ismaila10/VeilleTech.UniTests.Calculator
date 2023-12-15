@@ -1,10 +1,15 @@
-﻿using System;
+﻿using VeilleTech.UniTests.Calculator.Models;
 
 namespace VeilleTech.UniTests.Calculator.Tests
 {
     public class CalculatorTests
     {
-        private readonly Calculator _calculator = new();
+        private readonly Calculator _calculator;
+
+        public CalculatorTests()
+        {
+                _calculator = new Calculator();
+        }
 
         // STEP 1 NAMING
 

@@ -1,4 +1,4 @@
-﻿namespace VeilleTech.UniTests.Calculator
+﻿namespace VeilleTech.UniTests.Calculator.Models
 {
     public class CalculatorResponse
     {
